@@ -57,10 +57,11 @@ def add_member():
     try:
         # Intenta cargar los datos JSON de la solicitud
         new_member = json.loads(request.data)
+        crearid = {"id": jackson_family._generateId(), "first_name":new_member["first_name"], "last_name":jackson_family.last_name, "age":new_member["age"], "lucky_numbers":new_member["lucky_numbers"] } 
         # Agrega un nuevo miembro a la familia Jackson
-        jackson_family.add_member(new_member)
+        jackson_family.add_member(crearid)
         # Devuelve los datos del nuevo miembro en formato JSON con el código de estado 200 
-        return jsonify(new_member), 200
+        return jsonify(crearid), 200
     except:
         # en caso de un error (por ejemplo, datos JSON no válidos), devuelve código 400 (Bad Request)
         return jsonify({"error": "bad request"}), 400
